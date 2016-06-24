@@ -1,0 +1,23 @@
+<template name="portalSidebars">
+    <!-- hidden portal info sidebar-->
+    <div class="ui sidebar right vertical sideBarPortalDisplay" id="portalDisplaySideBarElement">
+        <h3 class="ui segment header" style="padding:0.3em; margin:.2em"><span id="sideBarPortalName">Default Name</span></h3>
+        <img class="ui segment" id="sideBarPortalImage" style="max-height: 12em; max-width:100%; padding:0px; margin:0px;"/>
+        <div class="ui segment" id ="portalDisplayInfoBox" style="margin:0.5em; text-align: left">
+            <div>Coordinates (lat,lng): <br/> <span id="sideBarPortalLat">X</span> , <span id="sideBarPortalLng">Y</span></div>
+            <div>Guid: <span id="sideBarPortalGuid">Default GUID</span></div>
+            <i class="anchor icon" id="setAnchorElement"></i>
+            <i class="sign in icon" id="hideSidebarElement"></i>
+        </div>
+        <div id = 'sidebarPortalLineDisplay'></div>
+    </div>
+
+    <!-- hidden sidebar for portal drawing sidebar-->
+    <div class="ui sidebar bottom menu" id="toolbarMenuElement" style="width:50em !important;">
+        <div id="portalToolSelector" class="ui buttons fields"></div>
+        <div class="ui menu" id="anchorToolbarElement"></div>
+    </div>
+    <!--button class="frameSwap ui button icon" id="frameSwapButton"><i class="external icon"></i></button>
+    <iframe src="http://www.ingress.com/intel" class="ingressFrame" id="frameID"></iframe-->
+
+</template>

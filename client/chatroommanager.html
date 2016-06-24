@@ -1,0 +1,25 @@
+<template name="messageContentWindow">
+    <div style="display:flex;flex:1">
+        <div id="chatRoomSidebar">
+
+            <div class="chatRoomCategory"> Current Link Plan </div>
+            <div id="linkPlanChatButton" class="ui button segment toggle">Link Plan</div>
+
+            <div class="chatRoomCategory"> Private Rooms </div>
+            <div id="TeamRoomList" class="ui vertical menu segment scrolling chatRoomMenu"></div>
+
+            <div class="chatRoomCategory"> Public Rooms </div>
+            <div id="publicRoomList" class="ui vertical menu segment scrolling chatRoomMenu"></div>
+        </div>
+        <div id="chatRoomDisplay" style="flex:1">
+            <div style="flex:1;display:flex;flex-direction: row">
+                <span id="chatRoomMessageWindow" class="ui segment"></span>
+                <span id="chatRoomUsersWindow" class="ui segment"></span>
+            </div>
+            <div id='chatRoomInputDisplay' class="ui icon input">
+                <textarea id="chatRoomInput" placeholder="Message..." class="ui segment"></textarea>
+                <i id="chatRoomSubmitButton" class="inverted circular share link icon"></i>
+            </div>
+        </div>
+    </div>
+</template>

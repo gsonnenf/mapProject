@@ -1,0 +1,75 @@
+<head>
+    <title>Title</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <!--External Libraries-->
+    <script src="jquery-2.2.1.js"></script>
+    <script src="semanticUI/semantic.js"></script>
+    <link href='semanticUI/semantic.css' rel='stylesheet' />
+
+    <script src="pnotify/pnotify.custom.js"></script>
+    <link href='pnotify/pnotify.custom.css' rel='stylesheet' />
+
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.20.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.20.0/mapbox-gl.css' rel='stylesheet' />
+
+    <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+
+</head>
+
+<body>
+
+</body>
+
+<template name="ingressMapTool">
+
+    {{>messageSidebar}}
+    {{>portalSidebars}}
+
+
+    <!-- MAIN WINDOW -->
+    <div class="pusher" style="display:flex;flex-direction: column;height:100vw">
+
+        <!-- TOP MENU BAR ************************************************************* -->
+        <span class="ui menu" id="topMenuBar" style="margin: 1px">
+            <div class="ui buttons fields" id="mainMenuSelector"></div>
+            <span style="display:flex;flex-direction: row" id="menubarContainer"></span>
+            <div class = "ui right item" >{{> loginButtons align="right"}}</div>
+        </span>
+
+        <!-- MAIN CONTENT WINDOW ************************************************************* -->
+        <div id="contentWindow" style='flex: 1;position:relative'>
+            <div id='content1' class="contentWindow">
+                <div style="width:100%;height:100%">Place holder</div>
+            </div>
+            <div id='map' class="contentWindow"></div>
+            <div id='content3' class="contentWindow" >{{>messageContentWindow}}</div>
+
+        </div>
+    </div>
+
+    <div id="hiddenElements" style="display: none">
+        {{>linkPlanMenubar}}
+        {{>messageMenubar}}
+    </div>
+
+
+
+    <script>
+        initialize();
+    </script>
+
+</template>
+
+
+<!-- Login Widget -->
+<template name="ingressLogin">
+    <div class="ui menu" id="topMenuBar" style="margin: 1px">
+        <h3 class="ui text" style="margin-top: 5px"> Ingress Mapping Tool</h3>
+    </div>
+    <div class="ui container" style="width:50em;">{{>atForm}}</div>
+</template>
+
+
+
+

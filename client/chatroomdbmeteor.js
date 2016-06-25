@@ -1,7 +1,7 @@
 /**
  * Created by Greg on 6/1/2016.
  */
-import "./utility"
+import "./utility_notification"
 import "./dbmeteor.js";
 import "./dbactivesubscriptionmeteor.js";
 import "./chatroommanager.js"

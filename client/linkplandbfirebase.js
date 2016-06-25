@@ -21,7 +21,7 @@ class LinkPlanDbFirebase {
     fetchLinkPlan({uuid, callback}) {
         var uuidRef = this.linkPlanDataReference.child(uuid);
         uuidRef.once("value", function(snap) {
-            var linkPlan = new LinkPlanClass ();
+            var linkPlan = new LinkPlanModel ();
             linkPlan.unmarshall({linkPlanMarshall: snap.val()});
             callback( linkPlan );
         });

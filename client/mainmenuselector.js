@@ -2,7 +2,7 @@
  * Created by Greg on 6/1/2016.
  */
 
-import "./WidgetIconToggleButtonSet.js"
+import "./widget_icontogglebuttonset.js"
 import "./messagemenubar.js"
 
 MainMenuSelector = class MainMenuSelector extends WidgetIconToggleButtonSet {

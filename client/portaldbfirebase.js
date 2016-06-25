@@ -13,7 +13,7 @@ class PortalTestDb extends PortalDb {
         this.portalList = [];
         for (let index in fbList) {
             var element = fbList[index];
-            var portal = new Portal({
+            var portal = new PortalModel({
                 name: element.properties.name,
                 imgUrl: element.properties.img,
                 guid: index,

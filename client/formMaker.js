@@ -90,7 +90,7 @@ PortalManager.prototype.InitializePortalBaseDataListFromDb = function() {
     var DbCallback = function(data) {
         self.PortalBaseDataList = data.val();
         if (self.PortalBaseDataList == null) self.PortalBaseDataList = {};
-        console.log("Portal Cache returned");
+        console.log("PortalModel Cache returned");
         self.EndJob();
     };
     this.AddJob( function () { self.PortalBaseDataReference.once("value", DbCallback); });

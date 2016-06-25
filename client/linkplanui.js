@@ -2,7 +2,7 @@
  * Created by Greg on 5/21/2016.
  */
 
-import './utility.js';
+import './utility_notification.js';
 import './mapmanager.js';
 import './portalui.js';
 

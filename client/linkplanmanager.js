@@ -1,7 +1,7 @@
 /**
  * Created by Greg on 3/16/2016.
  */
-import './linkplanclass.js';
+import '../common/model_linkplan.js';
 import './linkplanui';
 
 LinkPlanManager = class LinkPlanManager {
@@ -47,7 +47,7 @@ LinkPlanManager = class LinkPlanManager {
     }
 
     createNewLinkPlan() {
-        this.activeLinkPlan = new LinkPlanClass();
+        this.activeLinkPlan = new LinkPlanModel();
         this.linkPlanUi.setLineList( this.activeLinkPlan.lineList );
         this.toolBar.setAnchorList( this.activeLinkPlan.anchorList );
         this.linkPlanMenubar.setActivePlan(this.activeLinkPlan);

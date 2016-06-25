@@ -2,7 +2,7 @@
  * Created by Greg on 6/3/2016.
  */
 
-import "./widgetitemset.js"
+import "./widget_itemset.js"
 
 ChatRoomManager = class ChatRoomManager {
     constructor() {

@@ -28,17 +28,17 @@ PortalUi = class PortalUi {
         var propertiesList = [];
 
         if (portalDb.isReady) {
-            Utility.successMessage({ title:"Portals", message:"Portal Cache is recent." });
+            Utility.successMessage({ title:"Portals", message:"PortalModel Cache is recent." });
             this.drawPortals();
         }
 
         else {
             Utility.standardMessage({
                 title:"Please Wait",
-                message:"Updated Portal list is being downloaded. This will take several seconds."
+                message:"Updated PortalModel list is being downloaded. This will take several seconds."
             });
             portalDb.onReady.push( ()=>{
-                Utility.successMessage({title:"SUCCESS",message:"Portal download has finished."});
+                Utility.successMessage({title:"SUCCESS",message:"PortalModel download has finished."});
                 this.drawPortals();
             });
         }

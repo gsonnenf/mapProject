@@ -94,7 +94,7 @@ LinkPlanDbMeteor = class LinkPlanDbMeteor {
     }
 
     unMarshallLinkPlan( linkPlanObject ) {
-        var linkPlan = new LinkPlanClass(linkPlanObject);
+        var linkPlan = new LinkPlanModel(linkPlanObject);
         linkPlan.anchorList = this.unMarshallAnchorList(linkPlanObject.anchorList);
         linkPlan.lineList = this.unMarshallLineList(linkPlanObject.lineList);
         return linkPlan;

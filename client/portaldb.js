@@ -2,7 +2,7 @@
  * Created by Greg on 5/7/2016.
  */
 
-import './portal.js';
+import '../common/model_portal.js';
 
 PortalDb = class PortalDb {
      constructor() {
@@ -33,14 +33,14 @@ PortalDb = class PortalDb {
 
          this.onChanged.push ( (portal, lastUpdateTime) => {
              var index = this.portalList.findIndex( (element) => { return (portal._id == element._id); });
-             this.portalList[index] = new Portal(portal);
+             this.portalList[index] = new PortalModel(portal);
              this.lastUpdateTimeLocal = lastUpdateTime;
              this.storePortalListLocal();
              this.storePortalLastUpdateTimeLocal();
          });
 
          this.onAdded.push ( (portal, lastUpdateTime) => {
-             this.portalList.push( new Portal(portal) );
+             this.portalList.push( new PortalModel(portal) );
              this.lastUpdateTimeLocal = lastUpdateTime;
              this.storePortalListLocal();
              this.storePortalLastUpdateTimeLocal();
@@ -63,7 +63,7 @@ PortalDb = class PortalDb {
         var portalList = [];
         for (let index in portalObjectList) {
             let portal = portalObjectList[index];
-            portalList.push(new Portal(portal));
+            portalList.push(new PortalModel(portal));
         }
         return portalList;
     };

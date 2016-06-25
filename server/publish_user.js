@@ -2,9 +2,9 @@
  * Created by Greg on 5/6/2016.
  */
 
-//export const roles = new Mongo.Collection('roles');
 
-import "./../common/util.js"
+import "./security"
+import "../common/collections"
 
 Meteor.publish("allUserData", function () {
     denyAccessUnlessAdmin( this.userId );
@@ -41,6 +41,5 @@ Meteor.methods({
         denyAccessUnlessAdmin();
         Roles.addUsersToRoles(userId, ['user']);
     },
-
 });
 

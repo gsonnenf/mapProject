@@ -2,7 +2,7 @@
  * Created by Greg on 5/22/2016.
  */
 
-Portal = class Portal {
+PortalModel = class PortalModel {
     constructor({guid, lat, lng, name, imgUrl, ingressId}) {
         this.lat = lat;
         this.lng = lng;

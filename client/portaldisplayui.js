@@ -50,7 +50,7 @@ PortalDisplayUi = class PortalDisplayUi {
     clearPortalDisplay() {
         this.portalInfoBox.hide();
         this.portalImageElement.attr("src","");
-        this.portalNameElement.text("No Portal Selected");
+        this.portalNameElement.text("No PortalModel Selected");
         this.portalLatElement.text("");
         this.portalLngElement.text("");
         this.portalGuidElement.text("");

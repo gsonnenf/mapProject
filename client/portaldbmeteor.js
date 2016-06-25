@@ -27,7 +27,7 @@ PortalDbMeteor = class PortalDbMeteor extends PortalDb {
 
         subscriptionReady.addCallbackOnReady({
             callback: ()=> {
-                this.basePortalDataDb.onAdded.push((document) => { this.onAdded(document, document.lastUpdateTime); console.log("Portal added");});
+                this.basePortalDataDb.onAdded.push((document) => { this.onAdded(document, document.lastUpdateTime); console.log("PortalModel added");});
                 this.basePortalDataDb.onChanged.push( (document) => { this.onChanged(document, document.lastUpdateTime); });
                 this.basePortalDataDb.onRemoved.push( (document) => { this.onRemoved(document, this.LastUpdateCursor.fetch()['time'] ); });
             } ,
@@ -42,7 +42,7 @@ PortalDbMeteor = class PortalDbMeteor extends PortalDb {
         var portalList = this.basePortalDataDb.getAllDocuments();
         for (let index in portalList) {
             var portal = portalList[index];
-            this.portalList.push(new Portal({
+            this.portalList.push(new PortalModel({
                 name: portal.name,
                 guid: portal._id,
                 lat: portal.lat,

@@ -2,7 +2,7 @@
  * Created by Greg on 4/13/2016.
  */
 
-LinkPlanClass = class LinkPlanClass {
+LinkPlanModel = class LinkPlanModel {
     constructor({_id = null, userId = Meteor.userId(), name = "New Link Plan" , lineList = [], anchorList = [], shared = false} = []) {
         this._id = _id;
         this.userId = userId;

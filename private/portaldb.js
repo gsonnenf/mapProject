@@ -108,10 +108,10 @@ PortalDataSchema.prototype.PortalStatusInfo = {
 
 PortalFormTemplate.DistanceForm = '<form id="portalDistanceForm" style="display:inline"> \
 <fieldset style="display:inline;" data-role="collapsible">\
-<legend>Portal Road Distance</legend>\
+<legend>PortalModel Road Distance</legend>\
     <input type="radio" name="roadDistance" value="0" checked> Unknown <br>\
-    <input type="radio" name="roadDistance" value="1"> Portal Center Near Road <br>\
-    <input type="radio" name="roadDistance" value="2"> Portal accesible from road <br>\
+    <input type="radio" name="roadDistance" value="1"> PortalModel Center Near Road <br>\
+    <input type="radio" name="roadDistance" value="2"> PortalModel accesible from road <br>\
     <input type="radio" name="roadDistance" value="3"> Requires Car exit. <br>\
     <input type="radio" name="roadDistance" value="4"> 1-4 minute walk. <br>\
     <input type="radio" name="roadDistance" value="5"> 5-15 minute walk. <br>\
@@ -123,7 +123,7 @@ PortalFormTemplate.DistanceForm = '<form id="portalDistanceForm" style="display:
 
 PortalFormTemplate.Terrain = '<form id="portalTerrainForm" style="display:inline"> \
 <fieldset style="display:inline;" data-role="collapsible">\
-<legend>Portal Terrain</legend>\
+<legend>PortalModel Terrain</legend>\
     <input type="radio" name="portalTerrain" value="0" checked> Unknown <br>\
     <input type="radio" name="portalTerrain" value="1" > Road/City <br>\
     <input type="radio" name="portalTerrain" value="1" > Difficult Road <br>\

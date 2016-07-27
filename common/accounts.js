@@ -43,3 +43,5 @@ AccountsTemplates.addField({
     ],
 });
 
+//TODO: Fix the real problem of app not working after logged in unless reloaded
+//if (Meteor.isClient) Accounts.onLogout(function() { location.reload(); });

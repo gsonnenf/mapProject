@@ -1358,7 +1358,7 @@ return init(root);
             if (typeof Notification !== "undefined" && "permission" in Notification) {
                 return (Notification.permission === "granted" ? 0 : 1);
             } else if ("webkitNotifications" in window) {
-                return window.webkitNotifications.checkPermission() == 0 ? 0 : 1;
+                return window.webkitNotifications.hasPermission() == 0 ? 0 : 1;
             } else {
                 return 1;
             }

@@ -1,60 +1,69 @@
-import "./linkplandbmeteor.js";
-import "./portalui.js";
-import "./linkplanui.js";
-import "./chatroommanager.js"
-import "./subscriptionready.js"
 
-
+import {SubscriptionReady} from "/client/lib/utility/subscriptionready"
+import {MapManager} from '/client/linkplan/mapmanager'
+import {LinkPlanManager} from '/client/linkplan/linkplanmanager'
+import {MessageMenubar} from '/client/communications/messagemenubar'
+import {MainMenuSelector} from '/client/communications/mainmenuselector'
+import {ChatRoomManager} from '/client/communications/chatroom/chatroommanager'
+import {MessageTabWidget} from '/client/communications/messages/messagetabwidget'
+import {PortalDbMeteor} from '/client/linkplan/portaldbmeteor'
+import {AccessClientJoin} from '/client/lib/accessclientjoin'
+import {AsyncNotifier} from '/common/lib/chimerapatterns'
+subscriptionReady = new SubscriptionReady();
 
 initialize = function initialize() {
 
     //Subscribe to database
-    subscriptionReady = new SubscriptionReady();
     Meteor.subscribe("allUserData");
     Meteor.subscribe("roles");
-    subscriptionReady.subscribe('LinkPlanData');
-    subscriptionReady.subscribe('LastUpdateTracker');
-    subscriptionReady.subscribe('ChatRoomNames');
-    subscriptionReady.subscribe('BasePortalData');
+
+    clientJoin = new AccessClientJoin({
+        documentCollection:LinkPlanCollection,
+        accessCollection:LinkPlanAccessCollection
+    });
     
+    var linkPlanNotifier = new AsyncNotifier();
+    clientJoin.subscribe({joinPub: 'linkPlan'},{onReady: linkPlanNotifier.registerCallback(()=>{console.log("linkPlan") }) });
+    Meteor.subscribe('LastUpdateTracker',{ onReady: linkPlanNotifier.registerCallback(()=>{console.log("lastUpdateTracker") }) });
+
+    subscriptionReady.subscribe('ChatRoomNames');
+
     //initialize Semantic UI elements
     //$('.ui.button.toggle').each(function () { $(this).state(); });
     $('.dropdown').dropdown();
 
-
-    //
-    mapManager = new MapManager();
+    var mapManager = new MapManager();
     mapManager.moveToUserLocation();
     linkPlanManager = new LinkPlanManager();
-    messageMenubar = new MessageMenubar();
-    mainMenuSelector = new MainMenuSelector({linkPlanManager:linkPlanManager, messageMenubar:messageMenubar});
-    chatRoomManager = new ChatRoomManager();
+    var messageMenubar = new MessageMenubar();
+    var mainMenuSelector = new MainMenuSelector({linkPlanManager:linkPlanManager, messageMenubar:messageMenubar});
+    var chatRoomManager = new ChatRoomManager();
 
-    messageSidebar = new MessageTabWidget({linkPlanManager:linkPlanManager});
+    var messageSidebar = new MessageTabWidget({linkPlanManager:linkPlanManager});
     messageSidebar.show();
 
-    
 
-    subscriptionReady.addCallbackOnReady({
-        callback:()=> { chatRoomManager.initialize();},
-        subscriptionNames: ['ChatRoomNames']
+    subscriptionReady.addReadyCallback({
+        subscriptionNames: ['ChatRoomNames'],
+        callback:()=> { chatRoomManager.initialize(); }
     });
 
-    subscriptionReady.addCallbackOnReady({
-        callback: ()=> {
-            portalDb = new PortalDbMeteor();
-           //if (mapManager.map.loaded()) {
-                console.log("init link plan manager");
-               linkPlanManager.initialize({mapManager: mapManager, portalDb: portalDb});
-            //}
-            //else
-                mapManager.map.once('style.load', () => {
-                    console.log("init link plan manager 2");
-                    linkPlanManager.initialize({mapManager: mapManager, portalDb: portalDb});
-                });
-        },
-        subscriptionNames: ['LastUpdateTracker','LinkPlanData']
-    });
+    linkPlanNotifier.onCompleted( ()=> {
+        var portalDb = new PortalDbMeteor();
 
+        //if (mapManager.map.loaded()) {
+        console.log("init link plan manager");
+        linkPlanManager.initialize({mapManager: mapManager, portalDb: portalDb});
+        //}
+        //else
+        mapManager.map.once('style.load', () => {
+            console.log("init link plan manager 2");
+            linkPlanManager.initialize({mapManager: mapManager, portalDb: portalDb});
+        });
+    });
+    linkPlanNotifier.start();
+
+
+    //subscriptionReady.subscribe('BasePortalData');
     console.log("initialized");
 };

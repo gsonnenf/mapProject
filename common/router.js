@@ -6,7 +6,6 @@ Router.route( '/',
     }
 );
 
-Router.route('test',
-    function(){this.render('test');});
+Router.route('test',  function(){this.render('test');});
 
 console.log("Routes Registered.")

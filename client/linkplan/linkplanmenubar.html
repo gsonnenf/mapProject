@@ -1,0 +1,64 @@
+
+<template name="linkPlanMenubar">
+<span id="linkPlanMenubar" style="display:flex;flex-direction: row">
+
+     <div class="ui icon selection dropdown" id="planManagerSaveDropdown">
+        <i class="dropdown icon"></i>
+        <span>Plan Options</span>
+        <div class="menu">
+            <div class="item" id="newPlanButton">New</div>
+            <div class="item" id="savePlanButton">Save</div>
+            <div class="item" id="savePlanCopyButton">Save Copy</div>
+            <div class="ui divider"></div>
+            <div>&nbsp;Your Plans</div>
+            <div id="userPlanListElement" class="ui divider"></div>
+            <div class="ui divider"></div>
+            <div>&nbsp;Shared Plans</div>
+            <div id="sharedPlanListElement" class="ui divider"></div>
+        </div>
+    </div>
+
+    <div class="ui" style="margin: auto 1em;">
+        Public: &nbsp;&nbsp;
+        <input id ="planSharedElement" type="checkbox" class="ui checkbox">
+        &nbsp;&nbsp;Plan Name:&nbsp;&nbsp;
+        <input id="planNameElement" type="text" placeholder="Unsaved Plan.....">
+
+        <span id="savePlanButton2" class="ui icon red button" style="padding: 5px;"><i class = "cloud upload icon"></i></span>
+    </div>
+     <div class="ui icon selection dropdown" id="linkPlanShareMenu">
+        <i class="dropdown icon"></i>
+        <span>Share</span>
+        <div class="menu">
+            <div class="item" id="linkPlanShare1">Friend #1</div>
+            <div class="item" id="linkPlanShare1">Friend #2</div>
+
+        </div>
+    </div>
+
+    <!-- Button for zooming in on user location -->
+    <a class="item" id="moveToUserLocationButton">
+        <i class="child icon"></i>
+        Location
+    </a>
+    <!-- menu for changing map type -->
+    <!--div class="ui floating dropdown labeled search icon button item">
+        <i class="world icon"></i>
+        <span class="text">Map Mode</span>
+        <div class="menu">
+            <div class="item mapTypeButton" value="basic">Basic</div>
+            <div class="item mapTypeButton" value="streets">Streets</div>
+            <div class="item mapTypeButton" value="emerald">Emerald</div>
+
+            <div class="item mapTypeButton" value="light">Light</div>
+            <div class="item mapTypeButton" value="dark">Dark</div>
+            <div class="item mapTypeButton" value="satellite">Satellite</div>
+
+        </div>
+
+    </div-->
+
+    <!--button class="ui toggle button" id="lineModeButton">Line Mode</button-->
+
+    </span>
+</template>

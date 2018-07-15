@@ -70,7 +70,7 @@ portalUserData.Submit = function() {
 };
 self.PortalBaseDataReference.update( nodeBaseData, function() {console.log("Added portal to db: " + node.guid); self.EndJob();} );
 self.PortalBaseDataList[btoa(node.guid)] = nodeBaseData[btoa(node.guid)];
-}
+
 
 var TableAlignment = {
     neutral : 0,

@@ -23,8 +23,8 @@ initialize = function initialize() {
     });
     
     var linkPlanNotifier = new AsyncNotifier();
-    clientJoin.subscribe({joinPub: 'linkPlan'},{onReady: linkPlanNotifier.registerCallback(()=>{console.log("linkPlan") }) });
-    Meteor.subscribe('LastUpdateTracker',{ onReady: linkPlanNotifier.registerCallback(()=>{console.log("lastUpdateTracker") }) });
+    clientJoin.subscribe({joinPub: 'linkPlan'},{onReady: linkPlanNotifier.registerCallback(()=>{console.log("linkPlan subscription finished.") }) });
+    Meteor.subscribe('LastUpdateTracker',{ onReady: linkPlanNotifier.registerCallback(()=>{console.log("lastUpdateTracker subscription finished.") }) });
 
     subscriptionReady.subscribe('ChatRoomNames');
 
@@ -36,7 +36,7 @@ initialize = function initialize() {
     mapManager.moveToUserLocation();
     linkPlanManager = new LinkPlanManager();
     var messageMenubar = new MessageMenubar();
-    var mainMenuSelector = new MainMenuSelector({linkPlanManager:linkPlanManager, messageMenubar:messageMenubar});
+    
     var chatRoomManager = new ChatRoomManager();
 
     var messageSidebar = new MessageTabWidget({linkPlanManager:linkPlanManager});
@@ -49,6 +49,7 @@ initialize = function initialize() {
     });
 
     linkPlanNotifier.onCompleted( ()=> {
+        console.log("Link Plan Notfier completing...")
         var portalDb = new PortalDbMeteor();
 
         //if (mapManager.map.loaded()) {
@@ -60,6 +61,8 @@ initialize = function initialize() {
             console.log("init link plan manager 2");
             linkPlanManager.initialize({mapManager: mapManager, portalDb: portalDb});
         });
+
+        var mainMenuSelector = new MainMenuSelector({linkPlanManager:linkPlanManager, messageMenubar:messageMenubar});
     });
     linkPlanNotifier.start();
 

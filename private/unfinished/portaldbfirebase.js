@@ -3,10 +3,9 @@
  */
 
 
-class PortalTestDb extends PortalDb {
+export class PortalImportFirebase {
     constructor() {
         super();
-        this.doNotLoadFromCache = false;
     }
 
     parseCodyFirebaseData(fbList) {
@@ -30,22 +29,29 @@ class PortalTestDb extends PortalDb {
 
         var localDbTime = window.localStorage.getItem(this.portalListLastUpdateStorageId);
 
-        if (localDbTime != null)
-            if (localDbTime < (Date.now + 1000 * 60 * 60) && !this.doNotLoadFromCache) {
-                this.getPortalListFromLocalStorage();
-                callback(self.portalList);
-                console.log('Portals loaded from Cache');
-                return;
-            }
-
         var gFireBaseUrl = "https://ingressportalscrape.firebaseio.com/new16j";
         var fbref = new Firebase(gFireBaseUrl);
 
         fbref.once('value', function (ev) {
             self.parseCodyFirebaseData(ev.val().geometries);
-            self.storePortalListInLocalStorage();
+            //self.storePortalListInLocalStorage();
             console.log('Portals loaded from FB and wrote to cache');
-            callback(self.portalList);
+            //callback(self.portalList);
         });
     }
+
+    writePortalsToDb() {
+        for(let portal in this.portalList) {
+            BasePortalData.insert({
+                name: portal.name,
+                imgUrl: portal.imgUrl,
+                guid: portal.guid,
+                lng: portal.lng,
+                lat: poratl.lat,
+                ingressId: null
+            });       
+        }
+    }
+
+
 }

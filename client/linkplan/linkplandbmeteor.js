@@ -7,6 +7,7 @@ import "/client/lib/utility/notification"
 import "/common/collection/linkplan"
 
  export class LinkPlanDbMeteor {
+    
     constructor({portalDb}){
         this.portalDb = portalDb;
         

@@ -48,7 +48,7 @@ export class MainMenuSelector extends WidgetIconToggleButtonSet {
         super.createChildren();
         super.append(this.chatRoomNameElementId);
 
-        this.activeButton = this.buttonList[2];
+        this.activeButton = this.buttonList[1];
         this.activeButton.onSelect();
         this.activeButton.element.addClass("active");
     }

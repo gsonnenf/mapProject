@@ -2,6 +2,7 @@
  * Created by Greg on 5/6/2016.
  */
 import "/server/utility_security_server"
+import { RoleList } from "/server/rolelist" 
 
 Meteor.publish("allUserData", function () {
     denyAccessUnlessAdmin( this.userId );
@@ -22,19 +23,26 @@ Meteor.methods({
     userIsInRole : function(userId, roles) {
         denyAccessUnlessAdmin();
         var isTrue = Roles.userIsInRole( userId, roles);
-        console.log("User: " + userId + "is in role " + roles + ": " + isTrue);
+        //console.log("User: " + userId + "is in role " + roles + ": " + isTrue);
         return isTrue;
     },
 
     addRoleAdmin : function(userId) {
         denyAccessUnlessAdmin();
-        Roles.addUsersToRoles(userId, ['admin']);
+        Roles.addUsersToRoles(userId, [RoleList.ADMIN]);
         return 'success';
     },
     
     addRoleUser : function(userId) {
-        denyAccessUnlessAdmin();
-        Roles.addUsersToRoles(userId, ['user']);
+        denyAccessUnlessAdmin(userId);
+        Roles.addUsersToRoles(userId, [RoleList.USER]);
     },
+});
+
+Accounts.onCreateUser ( (option,user) => {
+    
+    user.roles = [RoleList.USER];
+    //Roles.addUsersToRoles(user._id, [RoleList.USER] );
+    return user;
 });
 

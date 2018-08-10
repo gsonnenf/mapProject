@@ -1,25 +1,25 @@
 /**
  * Created by Greg on 6/25/2016.
  */
-
+import { RoleList } from "/server/rolelist" 
 
 isUser = (userId) => {
-    if (arguments.length ==0) userId = Meteor.userId();
-    return Roles.userIsInRole( userId, 'user' );
+    if (userId === undefined) userId = Meteor.userId();
+    return Roles.userIsInRole( userId, RoleList.USER );
 };
 
 denyAccessUnlessAdmin = (userId) => {
-    if (arguments.length ==0) userId = Meteor.userId();
-    if ( !Roles.userIsInRole( userId, 'admin') ) throw new Meteor.Error(403, "Access Denied.");
+    if (userId === undefined) userId = Meteor.userId();
+    if ( !Roles.userIsInRole( userId, RoleList.ADMIN) ) throw new Meteor.Error(403, "Access Denied.");
 };
 
 denyAccessUnlessUser = () => {
     var userId = Meteor.userId();
-    if ( !Roles.userIsInRole( userId, 'user') )throw new Meteor.Error(403, "Access Denied.");
+    if ( !Roles.userIsInRole( userId, RoleList.USER) )throw new Meteor.Error(403, "Access Denied.");
 };
 
 denyAccessUnlessUserPub = (userId) => {
-    if ( !Roles.userIsInRole( userId, 'user') )throw new Meteor.Error(403, "Access Denied.");
+    if ( !Roles.userIsInRole( userId, RoleList.USER) )throw new Meteor.Error(403, "Access Denied.");
 };
 
 denyAnonymousAccessMethod = () => {if (  Meteor.userId() == null )throw new Meteor.Error(403, "Access Denied.");};

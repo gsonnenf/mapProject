@@ -3,7 +3,9 @@
  */
 
 PortalModel = class PortalModel {
+
     constructor({guid, lat, lng, name, imgUrl, ingressId}) {
+        if (arguments[0] == null) return;
         this.lat = lat;
         this.lng = lng;
         this.name = name;
@@ -12,6 +14,7 @@ PortalModel = class PortalModel {
         this.ingressId =ingressId;
     }
 
+    
     getPoint() {
         return [this.lng,this.lat];
     };

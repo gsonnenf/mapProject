@@ -8,26 +8,29 @@ import {PortalDb} from "./portaldb"
 export class PortalDbMeteor extends PortalDb {
     constructor() {
         super();
+        var self = this;
         Utility.debugMessage("PortalDbMeteor Constructor called.");
 
         this.basePortalDataDb = new DbMeteor({meteorCollection: BasePortalData, queryObject: {} });
-        this.LastUpdateCursor = LastUpdateTracker.find({key: "BasePortalData"});
+        this.LastUpdateCursor = LastUpdateTracker.find({key: "BasePortalData"});       
         this.lastUpdateTimeMeteor = LastUpdateTracker.findOne({key: "BasePortalData"})['time'];
 
-        this.isReady = true;
+        
 
         if (this.lastUpdateTimeMeteor != this.lastUpdateTimeLocal) {
             this.isReady = false;
+            subscriptionReady.subscribe('BasePortalData');
             subscriptionReady.addReadyCallback({
                 callback: ()=> {
-                    this.loadPortalsFromServer();
-                    this.isReady = true;
-                    this.onReady();
+                    self.loadPortalsFromServer();
+                    self.isReady = true;
+                    //this.onReady.CallEvent();
                 },
                 subscriptionNames: ['BasePortalData']
             });
         }
 
+        else this.isReady = true;
         /*
         subscriptionReady.addReadyCallback({
             callback: ()=> {
@@ -42,6 +45,7 @@ export class PortalDbMeteor extends PortalDb {
     }
 
     loadPortalsFromServer() {
+        console.log('Loading Portals from server....')
         this.lastUpdateTimeMeteor = LastUpdateTracker.findOne({key: "BasePortalData"})['time'];
         Utility.debugMessage("PortalDbMeteor - Portals loaded from server.");
         this.portalList = [];
@@ -57,6 +61,7 @@ export class PortalDbMeteor extends PortalDb {
                 ingressId: portal.ingressUid
             }));
         }
+        console.log('Finished loading portals from server.');
 
         this.storePortalListLocal();
         this.storePortalLastUpdateTimeLocal(this.lastUpdateTimeMeteor);
